@@ -34,6 +34,8 @@ public class UsersController {
         return foundUser;
     }
 
+    // Barrowed @RequestParam from this artiicle
+    //https://www.journaldev.com/3358/spring-requestmapping-requestparam-pathvariable-example
     @GetMapping("/users/search")
     public User findUserByUserName(@RequestParam("userName") String userName) throws NotFoundException {
         User foundUser = userRepository.findByUserName(userName);
