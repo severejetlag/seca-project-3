@@ -34,6 +34,11 @@ public class UsersController {
         return foundUser;
     }
 
+    @PostMapping("/users")
+    public User createNewUser(@RequestBody User userRequest){
+        return userRepository.save(userRequest);
+    }
+
     @DeleteMapping("/users/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId) throws NotFoundException {
         userRepository.delete(userId);

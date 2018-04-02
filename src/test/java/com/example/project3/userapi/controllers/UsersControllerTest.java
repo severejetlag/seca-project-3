@@ -308,7 +308,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewUserName() throws Exception{
         this.mockMvc
                 .perform(
-                        put("/users")
+                        post("/users")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -319,7 +319,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewFirstName() throws Exception{
         this.mockMvc
                 .perform(
-                        put("/users")
+                        post("/users")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -330,7 +330,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewLastName() throws Exception{
         this.mockMvc
                 .perform(
-                        put("/users")
+                        post("/users")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -341,7 +341,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewPassword() throws Exception{
         this.mockMvc
                 .perform(
-                        put("/users")
+                        post("/users")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -351,7 +351,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewNeighborhood() throws Exception{
         this.mockMvc
                 .perform(
-                        put("/users")
+                        post("/users")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -362,7 +362,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewBio() throws Exception{
         this.mockMvc
                 .perform(
-                        put("/users")
+                        post("/users")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
