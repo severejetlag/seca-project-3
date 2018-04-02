@@ -31,4 +31,59 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(UsersController.class)
 public class UsersControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper jsonObjectMapper;
+
+    @MockBean
+    private UserRepository mockUserRepository;
+
+    private User updatedSecondUser;
+
+    @Before
+    public void setUp() {
+        User firstUser = new User(
+                "user1",
+                "Nick",
+                "Lee",
+                "password",
+                "Bronx",
+                "I heart NY"
+        );
+
+        User secondUser = new User(
+                "user2",
+                "Lick",
+                "Nee",
+                "password2",
+                "Queens",
+                "NYC is the best"
+        );
+
+        updatedSecondUser = new User(
+                "new_user2",
+                "Kick",
+                "Mee",
+                "password3",
+                "Queens 2",
+                "NYC is still the best"
+        );
+
+        List<User> mockUsers =
+                Stream.of(firstUser, secondUser).collect(Collectors.toList());
+
+        given(mockUserRepository.findAll()).willReturn(mockUsers);
+        given(mockUserRepository.findOne(1L)).willReturn(firstUser);
+        given(mockUserRepository.findOne(4L)).willReturn(null);
+
+        // Mock out Delete to return EmptyResultDataAccessException for missing user with ID of 4
+        doAnswer(invocation -> {
+            throw new EmptyResultDataAccessException("oh no!", 1234);
+        }).when(mockUserRepository).delete(4L);
+
+        given(mockUserRepository.save(updatedSecondUser)).willReturn(updatedSecondUser);
+
+    }
 }
