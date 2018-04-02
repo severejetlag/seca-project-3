@@ -44,6 +44,8 @@ public class UsersBackEndTests {
 				"I heart NY"
 		);
 
+		firstUser = userRepository.save(firstUser);
+
 		User secondUser = new User(
 				"user2",
 				"Lick",
@@ -53,10 +55,8 @@ public class UsersBackEndTests {
 				"NYC is the best"
 		);
 
-		Stream.of(firstUser, secondUser)
-				.forEach(user -> {
-					userRepository.save(user);
-				});
+		secondUser = userRepository.save(secondUser);
+
 		when()
 				.get("http://localhost:8080/users")
 				.then()
@@ -67,14 +67,14 @@ public class UsersBackEndTests {
 				.body(containsString("user2"));
 
 		when()
-				.get("http://localhost:8080/users/2")
+				.get("http://localhost:8080/users/" + secondUser.getId())
 				.then()
 				.statusCode(is(200))
 				.body(containsString("Lick"))
 				.body(containsString("Nee"));
 
 		when()
-				.delete("http://localhost:8080/users/2")
+				.delete("http://localhost:8080/users/" + secondUser.getId())
 				.then()
 				.statusCode(is(200));
 	}
