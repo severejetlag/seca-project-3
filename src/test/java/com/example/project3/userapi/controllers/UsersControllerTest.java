@@ -137,6 +137,13 @@ public class UsersControllerTest {
     }
 
     @Test
+    public void findUserByUserName_success_returnStatusOK() throws Exception {
+        this.mockMvc
+                .perform(get("/users/user1"))
+                .andExpect()
+    }
+
+    @Test
     public void findUserById_success_returnsStatusOK() throws Exception {
 
         this.mockMvc

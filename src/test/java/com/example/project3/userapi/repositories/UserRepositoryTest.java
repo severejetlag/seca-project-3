@@ -100,6 +100,6 @@ public class UserRepositoryTest {
     @Test
     public void findByUserName_returnsLastName(){
         User userFromDb = userRepository.findByUserName("user1");
-        assertThat(userFromDb.getLastName(), is("Nick"));
+        assertThat(userFromDb.getLastName(), is("Lee"));
     }
 }
