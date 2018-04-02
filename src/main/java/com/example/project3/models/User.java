@@ -36,6 +36,6 @@ public class User {
         this.lastName = lastName;
         this.password = password;
         this.neighborhood = neighborhood;
-        this.bio = bio; 
+        this.bio = bio;
     }
 }
