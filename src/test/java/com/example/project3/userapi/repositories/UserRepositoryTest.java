@@ -60,4 +60,13 @@ public class UserRepositoryTest {
 
         assertThat(usersFromDb.size(), is(2));
     }
+
+    @Test
+    public void findAll_returnsUserName() {
+        List<User> usersFromDb = userRepository.findAll();
+        String secondUsersUserName = usersFromDb.get(1).getUserName();
+
+        assertThat(secondUsersUserName, is("user2"));
+    }
+
 }
