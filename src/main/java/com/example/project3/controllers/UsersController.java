@@ -34,8 +34,13 @@ public class UsersController {
         return foundUser;
     }
 
-    // EXCEPTION HANDLERS
+    @DeleteMapping("/users/{userId}")
+    public HttpStatus deleteUserById(@PathVariable Long userId) throws NotFoundException {
+        userRepository.delete(userId);
+        return HttpStatus.OK;
+    }
 
+    // EXCEPTION HANDLERS
     @ExceptionHandler
     void handleUserNotFound(
             NotFoundException exception,
