@@ -52,4 +52,12 @@ public class UserRepositoryTest {
         entityManager.persist(secondUser);
         entityManager.flush();
     }
+
+    @Test
+    public void findAll_returnsAllUsers() {
+
+        List<User> usersFromDb = userRepository.findAll();
+
+        assertThat(usersFromDb.size(), is(2));
+    }
 }
