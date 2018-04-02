@@ -84,4 +84,22 @@ public class UserRepositoryTest {
 
         assertThat(secondUsersLastName, is("Nee"));
     }
+
+    @Test
+    public void findByUserName_returnsUserName(){
+        User userFromDb = userRepository.findByUserName("user1");
+        assertThat(userFromDb.getUserName(), is("user1"));
+    }
+
+    @Test
+    public void findByUserName_returnsFirstName(){
+        User userFromDb = userRepository.findByUserName("user1");
+        assertThat(userFromDb.getFirstName(), is("Nick"));
+    }
+
+    @Test
+    public void findByUserName_returnsLastName(){
+        User userFromDb = userRepository.findByUserName("user1");
+        assertThat(userFromDb.getLastName(), is("Nick"));
+    }
 }
