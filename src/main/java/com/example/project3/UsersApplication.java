@@ -9,7 +9,7 @@ public class UsersApplication {
 
 	@RequestMapping("/")
 	public String home() {
-		return "some users";
+		return "USER API";
 	}
 
 	public static void main(String[] args) {
