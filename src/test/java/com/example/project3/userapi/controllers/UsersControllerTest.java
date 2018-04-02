@@ -211,7 +211,7 @@ public class UsersControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
-                .andExpect(jsonPath("$.userName", is("newu_user2")));
+                .andExpect(jsonPath("$.userName", is("new_user2")));
     }
 
     @Test
@@ -275,7 +275,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        put("/4")
+                        put("/users/4")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
