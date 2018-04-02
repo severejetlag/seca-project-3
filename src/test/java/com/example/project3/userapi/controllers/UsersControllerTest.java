@@ -39,8 +39,8 @@ public class UsersControllerTest {
 
     @MockBean
     private UserRepository mockUserRepository;
-
     private User updatedSecondUser;
+    private User newUser;
 
     @Before
     public void setUp() {
@@ -71,6 +71,15 @@ public class UsersControllerTest {
                 "NYC is still the best"
         );
 
+        newUser = new User(
+                "new_user3",
+                "new",
+                "user",
+                "password",
+                "Brooklyn",
+                "I am new to NYC"
+        );
+
         List<User> mockUsers =
                 Stream.of(firstUser, secondUser).collect(Collectors.toList());
 
@@ -84,6 +93,7 @@ public class UsersControllerTest {
         }).when(mockUserRepository).delete(4L);
 
         given(mockUserRepository.save(updatedSecondUser)).willReturn(updatedSecondUser);
+        given(mockUserRepository.save(newUser)).willReturn((newUser));
 
     }
 
@@ -280,5 +290,82 @@ public class UsersControllerTest {
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void createdNewUser_success_returnStatusOk() throws Exception {
+        this.mockMvc
+                .perform(
+                        post("/users")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newUser))
+
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createNewUser_success_returnNewUserName() throws Exception{
+        this.mockMvc
+                .perform(
+                        put("/users")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newUser))
+                )
+                .andExpect(jsonPath("$.userName", is("new_user3")));
+    }
+
+    @Test
+    public void createNewUser_success_returnNewFirstName() throws Exception{
+        this.mockMvc
+                .perform(
+                        put("/users")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newUser))
+                )
+                .andExpect(jsonPath("$.firstName", is("new")));
+    }
+
+    @Test
+    public void createNewUser_success_returnNewLastName() throws Exception{
+        this.mockMvc
+                .perform(
+                        put("/users")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newUser))
+                )
+                .andExpect(jsonPath("$.lastName", is("user")));
+    }
+
+    @Test
+    public void createNewUser_success_returnNewPassword() throws Exception{
+        this.mockMvc
+                .perform(
+                        put("/users")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newUser))
+                )
+                .andExpect(jsonPath("$.password", is("password")));
+    }
+    @Test
+    public void createNewUser_success_returnNewNeighborhood() throws Exception{
+        this.mockMvc
+                .perform(
+                        put("/users")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newUser))
+                )
+                .andExpect(jsonPath("$.neighborhood", is("Brooklyn")));
+    }
+
+    @Test
+    public void createNewUser_success_returnNewBio() throws Exception{
+        this.mockMvc
+                .perform(
+                        put("/users")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newUser))
+                )
+                .andExpect(jsonPath("$.bio", is("I am new to NYC")));
     }
 }
