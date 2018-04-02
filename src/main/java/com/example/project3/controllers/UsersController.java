@@ -34,13 +34,23 @@ public class UsersController {
         return foundUser;
     }
 
+    @GetMapping("/users/search")
+    public User findUserByUserName(@RequestParam("userName") String userName) throws NotFoundException {
+        User foundUser = userRepository.findByUserName(userName);
+        if(foundUser == null){
+            throw new NotFoundException("User with Username of " + userName + " was not found");
+        }
+
+        return foundUser;
+    }
+
     @PostMapping("/users")
     public User createNewUser(@RequestBody User userRequest){
         return userRepository.save(userRequest);
     }
 
     @DeleteMapping("/users/{userId}")
-    public HttpStatus deleteUserById(@PathVariable Long userId) throws NotFoundException {
+    public HttpStatus deleteUserById(@PathVariable Long userId) throws EmptyResultDataAccessException {
         userRepository.delete(userId);
         return HttpStatus.OK;
     }
@@ -78,4 +88,5 @@ public class UsersController {
 
         response.sendError(HttpStatus.NOT_FOUND.value());
     }
+
 }
