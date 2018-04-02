@@ -190,4 +190,95 @@ public class UsersControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void updateUserById_success_returnsStatusOk() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        patch("/users/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateUserById_success_returnsUpdatedUserName() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        patch("/users/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
+                )
+                .andExpect(jsonPath("$.userName", is("newu_user2")));
+    }
+
+    @Test
+    public void updateUserById_success_returnsUpdatedFirstName() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        patch("/users/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
+                )
+                .andExpect(jsonPath("$.firstName", is("Kick")));
+    }
+
+    @Test
+    public void updateUserById_success_returnsUpdatedLastName() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        patch("/users/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
+                )
+                .andExpect(jsonPath("$.lastName", is("Mee")));
+    }
+
+    @Test
+    public void updateUserById_success_returnsUpdatedPassword() throws Exception {
+        this.mockMvc
+                .perform(
+                        patch("/users/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
+                )
+                .andExpect(jsonPath("$.password", is("password3")));
+    }
+    @Test
+    public void updatedUserById_success_returnUpdatedNeighborhood() throws Exception {
+        this.mockMvc
+                .perform(
+                        patch("/users/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
+                )
+                .andExpect(jsonPath("$.neighborhood", is("Queens 2")));
+    }
+
+    @Test
+    public void updateUserById_success_returnUpdatedBio() throws Exception {
+        this.mockMvc
+                .perform(
+                        patch("/users/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString((updatedSecondUser)))
+                )
+                .andExpect(jsonPath("$.bio", is("NYC is still the best")));
+    }
+
+    @Test
+    public void updateUserById_failure_userNotFoundReturns404() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        patch("/4")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
+                )
+                .andExpect(status().isNotFound());
+    }
 }
