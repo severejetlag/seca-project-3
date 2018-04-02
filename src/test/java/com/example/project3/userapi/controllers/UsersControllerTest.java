@@ -86,4 +86,20 @@ public class UsersControllerTest {
         given(mockUserRepository.save(updatedSecondUser)).willReturn(updatedSecondUser);
 
     }
+
+    @Test
+    public void findAllUsers_success_returnsStatusOK() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllUsers_success_returnAllUsersAsJSON() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users"))
+                .andExpect(jsonPath("$", hasSize(2)));
+    }
 }
