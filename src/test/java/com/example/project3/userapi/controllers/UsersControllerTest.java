@@ -140,7 +140,63 @@ public class UsersControllerTest {
     public void findUserByUserName_success_returnStatusOK() throws Exception {
         this.mockMvc
                 .perform(get("/users/user1"))
-                .andExpect()
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findUserByUserName_success_returnUserName() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/user1"))
+                .andExpect(jsonPath("$.userName", is("user1")));
+    }
+
+    @Test
+    public void findUserByUserName_success_returnFirstName() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/user1"))
+                .andExpect(jsonPath("$.firstName", is("Nick")));
+    }
+
+    @Test
+    public void findUserByUserName_success_returnLastName() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/user1"))
+                .andExpect(jsonPath("$.lastName", is("Lee")));
+    }
+
+    @Test
+    public void findUserByUserName_success_returnPassword() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/user1"))
+                .andExpect(jsonPath("$.password", is("password")));
+    }
+
+    @Test
+    public void findUserByUserName_success_returnNeighborhood() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/user1"))
+                .andExpect(jsonPath("$.neighborhood", is("Bronx")));
+    }
+
+    @Test
+    public void findUserByUserName_success_returnBio() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/user1"))
+                .andExpect(jsonPath("$.bio", is("I heart NY")));
+    }
+
+    @Test
+    public void findUserByUserName_failure_userNotFoundReturns404() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/user10"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
