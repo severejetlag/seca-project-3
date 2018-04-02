@@ -125,4 +125,45 @@ public class UsersControllerTest {
                 .perform(get("/users"))
                 .andExpect(jsonPath("$[0].lastName", is("Lee")));
     }
+
+    @Test
+    public void findUserById_success_returnsStatusOK() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findUserById_success_returnUserName() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/1"))
+                .andExpect(jsonPath("$.userName", is("user1")));
+    }
+
+    @Test
+    public void findUserById_success_returnFirstName() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/1"))
+                .andExpect(jsonPath("$.firstName", is("Nick")));
+    }
+
+    @Test
+    public void findUserById_success_returnLastName() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/1"))
+                .andExpect(jsonPath("$.lastName", is("Lee")));
+    }
+
+    @Test
+    public void findUserById_failure_userNotFoundReturns404() throws Exception {
+
+        this.mockMvc
+                .perform(get("/users/4"))
+                .andExpect(status().isNotFound());
+    }
+
 }
