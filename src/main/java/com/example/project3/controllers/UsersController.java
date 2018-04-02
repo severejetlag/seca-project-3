@@ -33,4 +33,22 @@ public class UsersController {
 
         return foundUser;
     }
+
+    // EXCEPTION HANDLERS
+
+    @ExceptionHandler
+    void handleUserNotFound(
+            NotFoundException exception,
+            HttpServletResponse response) throws IOException {
+
+        response.sendError(HttpStatus.NOT_FOUND.value());
+    }
+
+    @ExceptionHandler
+    void handleDeleteNotFoundException(
+            EmptyResultDataAccessException exception,
+            HttpServletResponse response) throws IOException {
+
+        response.sendError(HttpStatus.NOT_FOUND.value());
+    }
 }

@@ -50,7 +50,7 @@ public class UsersUIFeatureTest {
                 "Queens",
                 "NYC is the best"
         );
-        
+
         secondUser = userRepository.save(secondUser);
 
     }
