@@ -195,7 +195,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        patch("/users/1")
+                        put("/users/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -207,7 +207,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        patch("/users/1")
+                        put("/users/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -219,7 +219,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        patch("/users/1")
+                        put("/users/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -231,7 +231,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        patch("/users/1")
+                        put("/users/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -242,7 +242,7 @@ public class UsersControllerTest {
     public void updateUserById_success_returnsUpdatedPassword() throws Exception {
         this.mockMvc
                 .perform(
-                        patch("/users/1")
+                        put("/users/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -252,7 +252,7 @@ public class UsersControllerTest {
     public void updatedUserById_success_returnUpdatedNeighborhood() throws Exception {
         this.mockMvc
                 .perform(
-                        patch("/users/1")
+                        put("/users/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -263,7 +263,7 @@ public class UsersControllerTest {
     public void updateUserById_success_returnUpdatedBio() throws Exception {
         this.mockMvc
                 .perform(
-                        patch("/users/1")
+                        put("/users/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString((updatedSecondUser)))
                 )
@@ -275,7 +275,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        patch("/4")
+                        put("/4")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
