@@ -17,8 +17,20 @@ public class UsersController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping
+    @GetMapping("/users")
     public Iterable<User> findAllUsers() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/users/{userId}")
+    public User findUserById(@PathVariable Long userId) throws NotFoundException {
+
+        User foundUser = userRepository.findOne(userId);
+
+        if (foundUser == null) {
+            throw new NotFoundException("User with ID of " + userId + " was not found!");
+        }
+
+        return foundUser;
     }
 }
