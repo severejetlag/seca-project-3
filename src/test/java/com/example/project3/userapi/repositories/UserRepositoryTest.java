@@ -69,4 +69,11 @@ public class UserRepositoryTest {
         assertThat(secondUsersUserName, is("user2"));
     }
 
+    @Test
+    public void findAll_returnsFirstName() {
+        List<User> usersFromDb = userRepository.findAll();
+        String secondUsersFirstName = usersFromDb.get(1).getFirstName();
+
+        assertThat(secondUsersFirstName, is("Lick"));
+    }
 }
