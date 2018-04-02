@@ -1,5 +1,6 @@
 package com.example.project3.userapi.repositories;
 import com.example.project3.models.User;
+import com.example.project3.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,4 +19,37 @@ import static org.junit.Assert.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTest {
+
+    @Autowired
+    private TestEntityManager entityManager;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Before
+    public void setUp() {
+        userRepository.deleteAll();
+
+        User firstUser = new User(
+                "user1",
+                "Nick",
+                "Lee",
+                "password",
+                "Bronx",
+                "I heart NY"
+        );
+
+        User secondUser = new User(
+                "user2",
+                "Lick",
+                "Nee",
+                "password2",
+                "Queens",
+                "NYC is the best"
+        );
+
+        entityManager.persist(firstUser);
+        entityManager.persist(secondUser);
+        entityManager.flush();
+    }
 }
