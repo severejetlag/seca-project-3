@@ -24,8 +24,6 @@ repositories {
 	mavenCentral()
 }
 
-
-
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -38,7 +36,7 @@ dependencies {
 }
 
 task waitForAPIs(type: Exec) {
-	commandLine './wait-for-users-api.sh','http://localhost:8080/users'
+	commandLine './wait-for-users-api.sh','http://localhost:8080/'
 }
 
 test {
