@@ -36,8 +36,13 @@ dependencies {
 	runtime 'org.springframework.boot:spring-boot-devtools'
 }
 
+task waitForAPIs(type: Exec) {
+	commandLine './wait-for-users-api.sh','http://localhost:8080/users'
+}
+
 test {
 	dependsOn cleanTest
+	dependsOn waitForAPIs
 	testLogging {
 		exceptionFormat "full"
 		events "skipped", "passed", "failed"
@@ -48,10 +53,17 @@ test {
 
 task allTests(type: Test) {
 	dependsOn cleanTest
-
+	dependsOn waitForAPIs
 	testLogging {
 		exceptionFormat "full"
 		events "skipped", "passed", "failed"
 		displayGranularity 2
 	}
 }
+
+dockerCompose {
+	useComposeFiles = ['docker-compose.test.yml']
+}
+
+dockerCompose.isRequiredBy(test)
+dockerCompose.isRequiredBy(allTests)
