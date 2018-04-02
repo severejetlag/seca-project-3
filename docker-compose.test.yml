@@ -5,26 +5,26 @@ services:
     image: anapsix/alpine-java:8_jdk_unlimited
     ports:
       - '8080:8080'
-    working_dir: /app
+    working_dir: /users-api
     volumes:
-      - .:/app
+      - .:/users-api
     depends_on:
       - postgresdev
     command: './gradlew bootRun'
     environment:
       - GRADLE_USER_HOME=cache
       - SPRING_PROFILES_ACTIVE=dev
-#  tunr-ui:
-#    image: node
-#    ports:
-#      - '3000:3000'
-#    working_dir: /tunr-ui
-#    volumes:
-#      - ./tunr-ui:/tunr-ui
-#    command: 'npm start'
-#    environment:
-#      - GRADLE_USER_HOME=cache
-#      - SPRING_PROFILES_ACTIVE=dev
+  ui:
+    image: node
+    ports:
+      - '3000:3000'
+    working_dir: /ui
+    volumes:
+      - ./ui:/ui
+    command: 'npm start'
+    environment:
+      - GRADLE_USER_HOME=cache
+      - SPRING_PROFILES_ACTIVE=dev
   postgresdev:
     image: postgres
     ports:
