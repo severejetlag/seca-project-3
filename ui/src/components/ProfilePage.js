@@ -7,24 +7,35 @@ class ProfilePage extends Component{
   state = {
     editIsActive: false
   }
+
+  toggleProfileEdit = (event) => {
+    event.preventDefault()
+    this.setState({editIsActive: !this.state.editIsActive})
+  }
   render(){
 
     return(
       <div>
         <Nav/>
         <h1>Profile Page</h1>
-        <ProfilePageContent
-          userName={this.props.currentUser.userName}
-          firstName={this.props.currentUser.firstName}
-          lastName={this.props.currentUser.lastName}
-          neighborhood={this.props.currentUser.neighborhood}
-          bio={this.props.currentUser.bio}
-        />
+        <button onClick={this.toggleProfileEdit}>Edit Profile</button>
+        {
+          this.state.editIsActive ?
+          <ProfilePageEditForm
+            currentUser={this.props.currentUser}
+            updateUser={this.props.updateUser}
+          />
+          :
+          <ProfilePageContent
+            userName={this.props.currentUser.userName}
+            firstName={this.props.currentUser.firstName}
+            lastName={this.props.currentUser.lastName}
+            neighborhood={this.props.currentUser.neighborhood}
+            bio={this.props.currentUser.bio}
+          />
 
-        <ProfilePageEditForm
-          currentUser={this.props.currentUser}
-          updateUser={this.props.updateUser}
-        />
+        }
+
 
       </div>
     )
