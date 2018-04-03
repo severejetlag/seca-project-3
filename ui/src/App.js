@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Home from './components/Home'
+import Login from './components/Login'
 import axios from 'axios'
 import UsersPage from './components/UsersPage'
 
@@ -25,8 +25,8 @@ class App extends Component {
   }
 
   render() {
-    const HomeComponent = () => (
-      <Home
+    const LoginComponent = () => (
+      <Login
         currentUser={this.state.currentUser}
         userLogin={this.userLogin}
         toggleAdminLogin={this.toggleAdminLogin}
@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' render={HomeComponent}/>
+          <Route exact path='/' render={LoginComponent}/>
           <Route exact path='/users' render={UsersPageCompoment}/>
         </Switch>
       </Router>

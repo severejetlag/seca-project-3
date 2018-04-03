@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Nav from './Nav'
 import UserLoginForm from './UserLoginForm'
 import {Redirect} from 'react-router-dom'
-class Home extends Component{
+class Login extends Component{
   render(){
     const hasCurrentUser = Object.keys(this.props.currentUser).length !== 0
 
@@ -20,4 +20,4 @@ class Home extends Component{
   }
 }
 
-export default Home
+export default Login
