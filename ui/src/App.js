@@ -30,9 +30,13 @@ class App extends Component {
         currentUser={this.state.currentUser}
         userLogin={this.userLogin}
         toggleAdminLogin={this.toggleAdminLogin}
-      />
-      )
-    const UsersPageCompoment = () => (<UsersPage currentUser={this.state.currentUser}/>)
+      />)
+
+    const UsersPageCompoment = () => (
+      <UsersPage
+        currentUser={this.state.currentUser}
+        adminUser={this.state.adminUser}
+      />)
     return (
       <Router>
         <Switch>

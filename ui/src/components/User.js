@@ -9,6 +9,13 @@ const User = props => {
       </hgroup>
       <p>{props.user.bio}</p>
       <p>{props.user.neighborhood}</p>
+      {
+        props.adminUser ?
+        <button >
+          Delete User
+        </button>
+        : ""
+      }
     </li>
   )
 }

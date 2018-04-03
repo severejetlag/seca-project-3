@@ -24,7 +24,7 @@ class UsersPage extends Component{
         <hgroup>
           <h1>Registered Users</h1>
         </hgroup>
-        <UserList users={this.state.users}/>
+        <UserList users={this.state.users} adminUser={this.props.adminUser}/>
       </div>
     )
   }
