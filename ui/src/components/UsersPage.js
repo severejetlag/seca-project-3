@@ -6,12 +6,11 @@ import {Redirect} from 'react-router-dom'
 
 class UsersPage extends Component{
   state = {
-    users: [],
-    hasCurrentUser: Object.keys(this.props.currentUser).length !== 0
+    users: []
   }
 
   async componentDidMount() {
-    if(this.state.hasCurrentUser){
+    if(this.props.hasCurrentUser){
       try {
         const response = await axios.get('/users')
         this.setState({ users: response.data })
@@ -38,7 +37,7 @@ class UsersPage extends Component{
   render(){
     // Redirect from Stack Overflow
     //https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
-    if(!this.state.hasCurrentUser){
+    if(!this.props.hasCurrentUser){
       return <Redirect to='/'/>
     }
     return(

@@ -9,14 +9,15 @@ import ProfilePage from './components/ProfilePage'
 class App extends Component {
   state = {
     currentUser: {},
-    adminUser: false
+    adminUser: false,
+    hasCurrentUser: false
   }
 
   userLogin = async (userInfo, isAdmin) => {
     try {
       console.log(userInfo)
         const userLoginResponse = await axios.get(`/users/search?userName=${userInfo.userName}`)
-        this.setState({ currentUser: userLoginResponse.data, adminUser: isAdmin })
+        this.setState({ currentUser: userLoginResponse.data, adminUser: isAdmin, hasCurrentUser: true})
     } catch(error) {
         console.log('Error logging in!')
         console.log(error)
@@ -26,7 +27,7 @@ class App extends Component {
   createUser = async (newUserInfo) =>{
     try{
       const createdUserResponse = await axios.post('/users', newUserInfo)
-      this.setState({currentUser: createdUserResponse.data})
+      this.setState({currentUser: createdUserResponse.data, hasCurrentUser: true})
     }catch(error){
       console.log('Error creating new user')
       console.log(error)
@@ -48,7 +49,7 @@ class App extends Component {
     try{
       const deletedUserResponse = await axios.delete(`/users/${userId}`)
       console.log(deletedUserResponse)
-      this.setState({currentUser:{}})
+      this.setState({currentUser:{}, hasCurrentUser:false})
     }catch(error){
       console.log('Error deleting account')
       console.log(error)
@@ -62,6 +63,7 @@ class App extends Component {
   render() {
     const LoginComponent = () => (
       <Login
+        hasCurrentUser={this.state.hasCurrentUser}
         currentUser={this.state.currentUser}
         userLogin={this.userLogin}
         toggleAdminLogin={this.toggleAdminLogin}
@@ -69,18 +71,21 @@ class App extends Component {
 
     const SignupComponent = () => (
       <Signup
+        hasCurrentUser={this.state.hasCurrentUser}
         currentUser={this.state.currentUser}
         createUser={this.createUser}
       />)
 
     const UsersPageCompoment = () => (
       <UsersPage
+        hasCurrentUser={this.state.hasCurrentUser}
         currentUser={this.state.currentUser}
         adminUser={this.state.adminUser}
       />)
 
     const ProfilePageComponent = () => (
       <ProfilePage
+        hasCurrentUser={this.state.hasCurrentUser}
         currentUser={this.state.currentUser}
         updateUser={this.updateUser}
         deleteUser={this.deleteUser}

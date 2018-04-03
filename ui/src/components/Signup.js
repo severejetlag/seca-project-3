@@ -8,10 +8,9 @@ class Signup extends Component{
     newUserInfo:{}
   }
   render(){
-    const hasCurrentUser = Object.keys(this.props.currentUser).length !== 0
     // Redirect from Stack Overflow
     //https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
-    if(hasCurrentUser){
+    if(this.props.hasCurrentUser){
       return <Redirect to='/userslist'/>
     }
     return(
