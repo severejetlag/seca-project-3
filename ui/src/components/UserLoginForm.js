@@ -22,7 +22,7 @@ class UserLoginForm extends Component {
   render() {
     return (
       <div>
-        <h2>Create New Idea</h2>
+        <h2>Enter Your Username To Login</h2>
 
         <form onSubmit={this.handleSubmit}>
           <div>
