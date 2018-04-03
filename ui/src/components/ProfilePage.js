@@ -15,6 +15,12 @@ class ProfilePage extends Component{
     event.preventDefault()
     this.setState({editIsActive: !this.state.editIsActive})
   }
+
+  handleDeleteClick = (event) => {
+    event.preventDefault()
+    this.props.deleteUser(this.props.currentUser.id)
+    this.setState({hasCurrentUser:false})
+  }
   render(){
     // Redirect from Stack Overflow
     //https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
@@ -27,6 +33,7 @@ class ProfilePage extends Component{
         <Nav/>
         <h1>Profile Page</h1>
         <button onClick={this.toggleProfileEdit}>Edit Profile</button>
+        <button onClick={this.handleDeleteClick}>Delete Profile</button>
         {
           this.state.editIsActive ?
           <ProfilePageEditForm
