@@ -27,11 +27,11 @@ class ProfilePage extends Component{
     }
 
     return(
-      <div>
+      <main id="profile-container">
         <Nav/>
         <h1>Profile Page</h1>
-        <button onClick={this.toggleProfileEdit}>Edit Profile</button>
-        <button onClick={this.handleDeleteClick}>Delete Profile</button>
+        <button id='edit-profile-button' onClick={this.toggleProfileEdit}>Edit Profile</button>
+        <button id='delete-profile-button' onClick={this.handleDeleteClick}>Delete Profile</button>
         {
           this.state.editIsActive ?
           <ProfilePageEditForm
@@ -47,7 +47,7 @@ class ProfilePage extends Component{
             bio={this.props.currentUser.bio}
           />
         }
-      </div>
+      </main>
     )
   }
 }

@@ -14,10 +14,10 @@ class Signup extends Component{
       return <Redirect to='/userslist'/>
     }
     return(
-      <div>
+      <main id='signup-container'>
         <Nav/>
         <UserSignupForm createUser={this.props.createUser}/>
-      </div>
+      </main>
     )
   }
 }

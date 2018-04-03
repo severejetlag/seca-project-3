@@ -39,13 +39,14 @@ class UserLoginForm extends Component {
           <div>
             <label htmlFor="userName">Username</label>
             <input
+              id='userName-input'
               name="userName"
               type="text"
               onChange={this.handleChange} />
           </div>
 
           <label htmlFor="isAdmin">Check for admin functionality</label>
-          <input type="checkbox" id="admin" name="isAdmin"  onClick={this.handleAdminToggle}/>
+          <input type="checkbox" id="admin-checkbox" name="isAdmin"  onClick={this.handleAdminToggle}/>
 
           <div>
             <input id='login-submit' type='submit' value='Login'/>

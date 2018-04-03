@@ -14,7 +14,7 @@ const UserList = props => {
     )
   })
   return(
-    <ul>
+    <ul id='user-list'>
       {userComponents}
     </ul>
   )

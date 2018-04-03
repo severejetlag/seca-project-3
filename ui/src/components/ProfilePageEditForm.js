@@ -28,36 +28,36 @@ class ProfilePageEditForm extends Component{
         <form onSubmit={this.handleSubmit} id='signup-form'>
           <div>
             <label htmlFor="userName">Username</label>
-            <input name="userName" type="text" value={this.state.userInfo.userName} onChange={this.handleChange} />
+            <input id='userName-input' name="userName" type="text" value={this.state.userInfo.userName} onChange={this.handleChange} />
           </div>
 
           <div>
             <label htmlFor="firstName">First Name</label>
-            <input name="firstName" type="text" value={this.state.userInfo.firstName} onChange={this.handleChange} />
+            <input id='firstName-input' name="firstName" type="text" value={this.state.userInfo.firstName} onChange={this.handleChange} />
           </div>
 
           <div>
             <label htmlFor="lastName">Last Name</label>
-            <input name="lastName" type="text" value={this.state.userInfo.lastName} onChange={this.handleChange} />
+            <input id='lastName-input' name="lastName" type="text" value={this.state.userInfo.lastName} onChange={this.handleChange} />
           </div>
 
           <div>
             <label htmlFor="password">Password</label>
-            <input name="password" type="password" value={this.state.userInfo.password} onChange={this.handleChange} />
+            <input id='password-input' name="password" type="password" value={this.state.userInfo.password} onChange={this.handleChange} />
           </div>
 
           <div>
             <label htmlFor="neighborhood">Neighborhood</label>
-            <input name="neighborhood" type="text" value={this.state.userInfo.neighborhood} onChange={this.handleChange} />
+            <input id='neighborhood-input' name="neighborhood" type="text" value={this.state.userInfo.neighborhood} onChange={this.handleChange} />
           </div>
 
           <div>
             <label htmlFor="bio">Bio</label>
-            <textarea name="bio" type="text" value={this.state.userInfo.bio} onChange={this.handleChange} />
+            <textarea id='bio-input' name="bio" type="text" value={this.state.userInfo.bio} onChange={this.handleChange} />
           </div>
 
           <div>
-            <input id='login-submit' type='submit' value='Update'/>
+            <input id='signup-submit' type='submit' value='Update'/>
           </div>
         </form>
       </div>

@@ -11,10 +11,10 @@ class Login extends Component{
       return <Redirect to='/userslist'/>
     }
     return(
-      <div>
+      <main id="login-container">
         <Nav/>
         <UserLoginForm userLogin={this.props.userLogin} toggleAdminLogin={this.props.toggleAdminLogin}/>
-      </div>
+      </main>
     )
   }
 }

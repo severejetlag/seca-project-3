@@ -58,6 +58,7 @@ public class UsersUIFeatureTest {
         secondUser = userRepository.save(secondUser);
 
         System.setProperty("selenide.browser", "Chrome");
+        System.setProperty("selenide.headless", "true");
 
         open("http://www.google.com");
 

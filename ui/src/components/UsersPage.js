@@ -41,13 +41,13 @@ class UsersPage extends Component{
       return <Redirect to='/'/>
     }
     return(
-      <div>
+      <main id='users-container'>
         <Nav/>
         <hgroup>
           <h1>Registered Users</h1>
         </hgroup>
         <UserList currentUserName={this.props.currentUser.userName} users={this.state.users} adminUser={this.props.adminUser} deleteUser={this.deleteUser}/>
-      </div>
+      </main>
     )
   }
 }
