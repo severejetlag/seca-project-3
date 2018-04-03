@@ -24,7 +24,6 @@ class App extends Component {
 
   createUser = async (newUserInfo) =>{
     try{
-      console.log(newUserInfo)
       const createdUserResponse = await axios.post('/users', newUserInfo)
       this.setState({currentUser: createdUserResponse})
     }catch(error){
@@ -34,7 +33,13 @@ class App extends Component {
   }
 
   updateUser = async (userInfo) =>{
-    console.log(userInfo)
+    try{
+      const updatedUserResponse = await axios.put(`/users/${userInfo.id}`.userInfo)
+      this.setState({currentUser: updatedUserInfo})
+    }catch(error){
+      console.log('Error updating account information')
+      console.log(error)
+    }
   }
 
   toggleAdminLogin = (isAdmin) => {
