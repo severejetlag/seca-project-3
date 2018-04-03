@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import UserList from './UserList'
 import axios from 'axios'
+import Nav from './Nav'
 
 class UsersPage extends Component{
   state = {
@@ -19,6 +20,7 @@ class UsersPage extends Component{
   render(){
     return(
       <div>
+        <Nav/>
         <hgroup>
           <h1>Registered Users</h1>
         </hgroup>
