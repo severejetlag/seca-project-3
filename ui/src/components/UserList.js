@@ -4,6 +4,7 @@ const UserList = props => {
   const userComponents = props.users.map((user, index) => {
     return (
       <User
+        user={user}
         // deletePost={props.deletePost}
         key={index}
         index={index}
