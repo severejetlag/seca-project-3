@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfilePageContent = props =>{
+const ProfilePageContent = props => {
   return(
     <div>
       <h1>{props.userName}</h1>

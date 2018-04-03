@@ -4,6 +4,7 @@ import Login from './components/Login'
 import axios from 'axios'
 import UsersPage from './components/UsersPage'
 import Signup from './components/Signup'
+import ProfilePage from './components/ProfilePage'
 
 class App extends Component {
   state = {
@@ -32,6 +33,10 @@ class App extends Component {
     }
   }
 
+  updateUser = async (userInfo) =>{
+    console.log(userInfo)
+  }
+
   toggleAdminLogin = (isAdmin) => {
     this.setState({adminUser: isAdmin})
   }
@@ -56,12 +61,20 @@ class App extends Component {
         adminUser={this.state.adminUser}
       />)
 
+    const ProfilePageComponent = () => (
+      <ProfilePage
+        currentUser={this.state.currentUser}
+        updateUser={this.updateUser}
+      />
+    )
+
     return (
       <Router>
         <Switch>
           <Route exact path='/' render={LoginComponent}/>
           <Route exact path='/signup' render={SignupComponent}/>
           <Route exact path='/userslist' render={UsersPageCompoment}/>
+          <Route exact path='/profile' render={ProfilePageComponent}/>
         </Switch>
       </Router>
     );
