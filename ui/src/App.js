@@ -26,7 +26,7 @@ class App extends Component {
   createUser = async (newUserInfo) =>{
     try{
       const createdUserResponse = await axios.post('/users', newUserInfo)
-      this.setState({currentUser: createdUserResponse})
+      this.setState({currentUser: createdUserResponse.data})
     }catch(error){
       console.log('Error creating new user')
       console.log(error)
@@ -40,6 +40,17 @@ class App extends Component {
       this.setState({currentUser: {...userInfo}})
     }catch(error){
       console.log('Error updating account information')
+      console.log(error)
+    }
+  }
+
+  deleteUser = async (userId) => {
+    try{
+      const deletedUserResponse = await axios.delete(`/users/${userId}`)
+      console.log(deletedUserResponse)
+      this.setState({currentUser:{}})
+    }catch(error){
+      console.log('Error deleting account')
       console.log(error)
     }
   }
@@ -72,6 +83,7 @@ class App extends Component {
       <ProfilePage
         currentUser={this.state.currentUser}
         updateUser={this.updateUser}
+        deleteUser={this.deleteUser}
       />
     )
 
