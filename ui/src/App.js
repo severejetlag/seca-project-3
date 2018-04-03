@@ -14,6 +14,7 @@ class App extends Component {
 
   userLogin = async (userInfo, isAdmin) => {
     try {
+      console.log(userInfo)
         const userLoginResponse = await axios.get(`/users/search?userName=${userInfo.userName}`)
         this.setState({ currentUser: userLoginResponse.data, adminUser: isAdmin })
     } catch(error) {

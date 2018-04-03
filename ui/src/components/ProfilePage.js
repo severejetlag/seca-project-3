@@ -7,7 +7,8 @@ import {Redirect} from 'react-router-dom'
 
 class ProfilePage extends Component{
   state = {
-    editIsActive: false
+    editIsActive: false,
+    hasCurrentUser: Object.keys(this.props.currentUser).length !== 0
   }
 
   toggleProfileEdit = (event) => {
@@ -15,11 +16,9 @@ class ProfilePage extends Component{
     this.setState({editIsActive: !this.state.editIsActive})
   }
   render(){
-    const hasCurrentUser = Object.keys(this.props.currentUser).length === 0
-
     // Redirect from Stack Overflow
     //https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
-    if(hasCurrentUser){
+    if(!this.state.hasCurrentUser){
       return <Redirect to='/'/>
     }
 
