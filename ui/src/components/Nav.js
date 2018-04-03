@@ -6,9 +6,8 @@ const Nav = props => {
     <nav>
       <Link to='/'>Login</Link>
       <Link to='/signup'>Signup</Link>
-      <Link to='/users'>Users</Link>
-      <Link to='/profile'>Profile</Link>
-      <Link to='/search'></Link>
+      <Link to='/userslist'>Users</Link>
+
     </nav>
   )
 }

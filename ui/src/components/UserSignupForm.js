@@ -40,7 +40,7 @@ class UserSignupForm extends Component{
 
           <div>
             <label htmlFor="lastName">Last Name</label>
-            <input name="userName" type="text" onChange={this.handleChange} />
+            <input name="lastName" type="text" onChange={this.handleChange} />
           </div>
 
           <div>

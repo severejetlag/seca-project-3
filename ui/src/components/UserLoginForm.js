@@ -44,7 +44,7 @@ class UserLoginForm extends Component {
               onChange={this.handleChange} />
           </div>
 
-          <label for="isAdmin">Check for admin functionality</label>
+          <label htmlFor="isAdmin">Check for admin functionality</label>
           <input type="checkbox" id="admin" name="isAdmin"  onClick={this.handleAdminToggle}/>
 
           <div>

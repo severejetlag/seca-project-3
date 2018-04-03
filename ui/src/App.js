@@ -22,7 +22,14 @@ class App extends Component {
   }
 
   createUser = async (newUserInfo) =>{
-
+    try{
+      console.log(newUserInfo)
+      const createdUserResponse = await axios.post('/users', newUserInfo)
+      this.setState({currentUser: createdUserResponse})
+    }catch(error){
+      console.log('Error creating new user')
+      console.log(error)
+    }
   }
 
   toggleAdminLogin = (isAdmin) => {
@@ -48,12 +55,13 @@ class App extends Component {
         currentUser={this.state.currentUser}
         adminUser={this.state.adminUser}
       />)
+
     return (
       <Router>
         <Switch>
           <Route exact path='/' render={LoginComponent}/>
-          <Route exact paht='/signup' render={SignupComponent}/>
-          <Route exact path='/users' render={UsersPageCompoment}/>
+          <Route exact path='/signup' render={SignupComponent}/>
+          <Route exact path='/userslist' render={UsersPageCompoment}/>
         </Switch>
       </Router>
     );

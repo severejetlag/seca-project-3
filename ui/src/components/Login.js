@@ -10,7 +10,7 @@ class Login extends Component{
     // Redirect from Stack Overflow
     //https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
     if(hasCurrentUser){
-      return <Redirect to='/users'/>
+      return <Redirect to='/userslist'/>
     }
     return(
       <div>
