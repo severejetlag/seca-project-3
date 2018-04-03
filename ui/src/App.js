@@ -10,7 +10,7 @@ class App extends Component {
   }
   async componentDidMount() {
       try {
-          const response = await axios.get('/users-api/users/1')
+          const response = await axios.get('/users/1')
           this.setState({ currentUser: response.data })
       } catch (error) {
           console.log('Error retrieving ideas!')
