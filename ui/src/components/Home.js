@@ -14,7 +14,7 @@ class Home extends Component{
     return(
       <div>
         <Nav/>
-        <UserLoginForm userLogin={this.props.userLogin}/>
+        <UserLoginForm userLogin={this.props.userLogin} toggleAdminLogin={this.props.toggleAdminLogin}/>
       </div>
     )
   }

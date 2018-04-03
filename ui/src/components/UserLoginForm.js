@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 class UserLoginForm extends Component {
   state = {
-    userInfo: {}
+    userInfo: {},
+    isAdmin: false
   }
 
   handleChange = (event) => {
@@ -13,10 +14,20 @@ class UserLoginForm extends Component {
     updatedUserInfo[attributeToChange] = newValue
     this.setState({ userInfo: updatedUserInfo })
   }
+
+  handleAdminToggle = (event) => {
+    this.setState({
+      isAdmin: !this.state.isAdmin
+    })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.userLogin(this.state.userInfo)
-    this.setState({userInfo:{}})
+    this.props.userLogin(this.state.userInfo, this.state.isAdmin)
+    this.setState({
+      userInfo:{},
+      isAdmin: false
+    })
   }
 
   render() {
@@ -24,30 +35,26 @@ class UserLoginForm extends Component {
       <div>
         <h2>Enter Your Username To Login</h2>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id='login-form'>
           <div>
             <label htmlFor="userName">Username</label>
             <input
               name="userName"
               type="text"
               onChange={this.handleChange} />
-            </div>
-
-            {/* <div>
-              <label htmlFor="password">password</label>
-              <textarea
-                name="password"
-                onChange={this.handleChange} />
-              </div> */}
-
-              <div>
-                <input type="submit" value="Login"/>
-              </div>
-            </form>
-
           </div>
-        )
-      }
-    }
 
-    export default UserLoginForm
+          <label for="isAdmin">Check for admin functionality</label>
+          <input type="checkbox" id="admin" name="isAdmin"  onClick={this.handleAdminToggle}/>
+
+          <div>
+            <input id='login-submit' type='submit' value='Login'/>
+          </div>
+        </form>
+
+      </div>
+    )
+  }
+}
+
+export default UserLoginForm
