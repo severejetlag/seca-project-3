@@ -15,8 +15,7 @@ class UserLoginForm extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-
-    this.props.createPost(this.state.userInfo)
+    this.props.userLogin(this.state.userInfo)
     this.setState({userInfo:{}})
   }
 

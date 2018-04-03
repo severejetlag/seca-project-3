@@ -8,16 +8,18 @@ class App extends Component {
   state = {
     currentUser: {}
   }
-  async componentDidMount() {
-      try {
-          const response = await axios.get('/users/1')
-          this.setState({ currentUser: response.data })
-      } catch (error) {
-          console.log('Error retrieving ideas!')
-      }
+
+  userLogin = async (userInfo) => {
+    try {
+        const userLoginResponse = await axios.get(`/users/search?userName=${userInfo.userName}`)
+        this.setState({ currentUser: userLoginResponse.data })
+    } catch(error) {
+        console.log('Error logging in!')
+        console.log(error)
+    }
   }
   render() {
-    const HomeComponent = () => (<Home currentUser={this.state.currentUser}/>);
+    const HomeComponent = () => (<Home currentUser={this.state.currentUser} userLogin={this.userLogin}/>);
     return (
       <Router>
         <Switch>
