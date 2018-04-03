@@ -6,7 +6,7 @@ const UserList = props => {
       <User
         adminUser={props.adminUser}
         user={user}
-        // deletePost={props.deletePost}
+        deleteUser={props.deleteUser}
         key={index}
         index={index}
       />

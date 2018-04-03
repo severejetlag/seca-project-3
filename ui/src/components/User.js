@@ -11,7 +11,7 @@ const User = props => {
       <p>{props.user.neighborhood}</p>
       {
         props.adminUser ?
-        <button >
+        <button onClick={() => props.deleteUser(props.user.id, props.index)}>
           Delete User
         </button>
         : ""

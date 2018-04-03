@@ -17,7 +17,7 @@ class UsersPage extends Component{
       }
   }
 
-  deletePost = async (userId, index) => {
+  deleteUser = async (userId, index) => {
     try {
         await axios.delete(`/users/${userId}`)
 
@@ -26,7 +26,7 @@ class UsersPage extends Component{
         this.setState({users: updatedUserList})
 
     } catch (error) {
-        console.log(`Error deleting Idea with ID of ${postId}`)
+        console.log(`Error deleting Idea with ID of ${userId}`)
         console.log(error)
     }
   }
@@ -38,7 +38,7 @@ class UsersPage extends Component{
         <hgroup>
           <h1>Registered Users</h1>
         </hgroup>
-        <UserList users={this.state.users} adminUser={this.props.adminUser}/>
+        <UserList users={this.state.users} adminUser={this.props.adminUser} deleteUser={this.deleteUser}/>
       </div>
     )
   }
