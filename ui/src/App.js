@@ -1,19 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import Home from './components/Home'
+import axios from 'axios'
+
 
 class App extends Component {
+  state = {
+    currentUser: {}
+  }
+  async componentDidMount() {
+      try {
+          const response = await axios.get('/users-api/users/1')
+          this.setState({ currentUser: response.data })
+      } catch (error) {
+          console.log('Error retrieving ideas!')
+      }
+  }
   render() {
+    const HomeComponent = () => (<Home currentUser={this.state.currentUser}/>);
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/" render={HomeComponent}/>
+        </Switch>
+      </Router>
     );
   }
 }
