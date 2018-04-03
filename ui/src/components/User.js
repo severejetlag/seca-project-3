@@ -1,6 +1,7 @@
 import React from 'react'
 
 const User = props => {
+  const isDeleteVisible = props.adminUser && props.user.userName !== props.currentUserName
   return(
     <li>
       <hgroup>
@@ -10,7 +11,7 @@ const User = props => {
       <p>{props.user.bio}</p>
       <p>{props.user.neighborhood}</p>
       {
-        props.adminUser ?
+        isDeleteVisible ?
         <button onClick={() => props.deleteUser(props.user.id, props.index)}>
           Delete User
         </button>

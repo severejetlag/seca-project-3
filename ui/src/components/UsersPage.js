@@ -47,7 +47,7 @@ class UsersPage extends Component{
         <hgroup>
           <h1>Registered Users</h1>
         </hgroup>
-        <UserList users={this.state.users} adminUser={this.props.adminUser} deleteUser={this.deleteUser}/>
+        <UserList currentUserName={this.props.currentUser.userName} users={this.state.users} adminUser={this.props.adminUser} deleteUser={this.deleteUser}/>
       </div>
     )
   }
