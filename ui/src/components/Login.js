@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Nav from './Nav'
 import UserLoginForm from './UserLoginForm'
 import {Redirect} from 'react-router-dom'
+
 class Login extends Component{
   render(){
     const hasCurrentUser = Object.keys(this.props.currentUser).length !== 0

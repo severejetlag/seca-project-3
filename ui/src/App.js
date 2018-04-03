@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Login from './components/Login'
 import axios from 'axios'
 import UsersPage from './components/UsersPage'
+import Signup from './components/Signup'
 
 class App extends Component {
   state = {
@@ -20,6 +21,10 @@ class App extends Component {
     }
   }
 
+  createUser = async (newUserInfo) =>{
+
+  }
+
   toggleAdminLogin = (isAdmin) => {
     this.setState({adminUser: isAdmin})
   }
@@ -32,6 +37,12 @@ class App extends Component {
         toggleAdminLogin={this.toggleAdminLogin}
       />)
 
+    const SignupComponent = () => (
+      <Signup
+        currentUser={this.state.currentUser}
+        createUser={this.createUser}
+      />)
+
     const UsersPageCompoment = () => (
       <UsersPage
         currentUser={this.state.currentUser}
@@ -41,6 +52,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path='/' render={LoginComponent}/>
+          <Route exact paht='/signup' render={SignupComponent}/>
           <Route exact path='/users' render={UsersPageCompoment}/>
         </Switch>
       </Router>

@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import UserSignupForm from './UserSignupForm'
+import Nav from './Nav'
+import {Redirect} from 'react-router-dom'
 
 class Signup extends Component{
   state = {

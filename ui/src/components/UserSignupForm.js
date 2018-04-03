@@ -1,4 +1,4 @@
-import Reac, {Compponent} from 'react'
+import React, {Component} from 'react'
 
 class UserSignupForm extends Component{
   state = {
@@ -59,7 +59,7 @@ class UserSignupForm extends Component{
           </div>
 
           <div>
-            <input id='login-submit' type='submit' value='Login'/>
+            <input id='login-submit' type='submit' value='Signup'/>
           </div>
         </form>
       </div>
