@@ -34,8 +34,9 @@ class App extends Component {
 
   updateUser = async (userInfo) =>{
     try{
-      const updatedUserResponse = await axios.put(`/users/${userInfo.id}`.userInfo)
-      this.setState({currentUser: updatedUserResponse})
+      const updatedUserResponse = await axios.put(`/users/${userInfo.id}`,userInfo)
+      console.log(updatedUserResponse)
+      this.setState({currentUser: {...userInfo}})
     }catch(error){
       console.log('Error updating account information')
       console.log(error)
