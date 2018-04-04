@@ -9,10 +9,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.MediaType;
 
 import java.util.stream.Stream;
 
+import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.core.Is.is;
 
@@ -55,7 +58,17 @@ public class UsersBackEndTests {
 				"NYC is the best"
 		);
 
+
 		secondUser = userRepository.save(secondUser);
+
+		User userNotYetInDb = new User(
+				"newuser",
+				"new",
+				"user",
+				"password",
+				"San Fran",
+				"trying out the new site"
+		);
 
 		when()
 				.get("http://localhost:8080/users")
@@ -72,6 +85,26 @@ public class UsersBackEndTests {
 				.statusCode(is(200))
 				.body(containsString("Lick"))
 				.body(containsString("Nee"));
+
+		given()
+				.contentType(JSON)
+				.and().body(userNotYetInDb)
+				.when()
+				.post("http://localhost:8080/users")
+				.then()
+				.statusCode(is(200))
+				.and().body(containsString("newuser"));
+
+		secondUser.setFirstName("changed_name");
+
+		given()
+				.contentType(JSON)
+				.and().body(secondUser)
+				.when()
+				.put("http://localhost:8080/users/" + secondUser.getId())
+				.then()
+				.statusCode(is(200))
+				.and().body(containsString("changed_name"));
 
 		when()
 				.delete("http://localhost:8080/users/" + secondUser.getId())
