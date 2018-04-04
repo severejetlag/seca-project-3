@@ -12,17 +12,23 @@ The city of New York needs a way to manage the users of its Database system. Thi
 
 
 ### Before Running Or Testing
-Before you run the application for the first time, you may want to enter the 'ui' directory and run 'npm install', since the node_modules folder is excluded form upload.
+Before you run the application for the first time, you may want to enter the 'ui' directory and run 'npm install' in your terminal, since the node_modules folder is excluded form upload.
 
 ```bash
-cd ui
-npm install
+$ cd ui
+$ npm install
 ```
-Set in .bash_profile
-* GITHUB_CLIENT_ID
-* GITHUB_CLIENT_SECRET
 
-### Problems and Future repoLanguages
+### Running Application
+To launch the application all you should need is to run docker-compose up in the project directory in terminal
 
-* Currently the biggest issue I have is an unreliable login where I will have to drop users (and logs) from the DB to allow it to login again. (p0)
-* I would also like to add some sort of scheduling to allow for data to be updated at all times and not just on login
+```bash
+$ docker-compose up
+```
+
+### Running Tests
+All application tests are runnable with a single command from the project root directory. You only have to run the command below in your terminal
+
+```bash
+$ ./gradlew test
+```
