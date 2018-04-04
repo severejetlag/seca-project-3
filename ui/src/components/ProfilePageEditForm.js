@@ -25,7 +25,7 @@ class ProfilePageEditForm extends Component{
     return(
       <div>
         <h2>Update User Profile</h2>
-        <form onSubmit={this.handleSubmit} id='signup-form'>
+        <form onSubmit={this.handleSubmit} id='edit-user-form'>
           <div>
             <label htmlFor="userName">Username</label>
             <input id='userName-input' name="userName" type="text" value={this.state.userInfo.userName} onChange={this.handleChange} />

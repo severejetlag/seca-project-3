@@ -6,13 +6,13 @@ const User = props => {
     <li className='user' id={`user-${props.user.id}`}>
       <hgroup>
         <h2>{props.user.userName}</h2>
-        <h3>{props.user.firstName}</h3>
+        <h3>{props.user.firstName} {props.user.lastName}</h3>
       </hgroup>
       <p>{props.user.bio}</p>
       <p>{props.user.neighborhood}</p>
       {
         isDeleteVisible ?
-        <button onClick={() => props.deleteUser(props.user.id, props.index)}>
+        <button className="admin-user-delete" onClick={() => props.deleteUser(props.user.id, props.index)}>
           Delete User
         </button>
         : ""
