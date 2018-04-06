@@ -16,7 +16,7 @@ class App extends Component {
   userLogin = async (userInfo, isAdmin) => {
     try {
       console.log(userInfo)
-        const userLoginResponse = await axios.get(`/users/search?userName=${userInfo.userName}`)
+        const userLoginResponse = await axios.get(`${process.env.REACT_APP_USERS_API}/users/search?userName=${userInfo.userName}`)
         this.setState({ currentUser: userLoginResponse.data, adminUser: isAdmin, hasCurrentUser: true})
     } catch(error) {
         console.log('Error logging in!')
@@ -26,7 +26,7 @@ class App extends Component {
 
   createUser = async (newUserInfo) =>{
     try{
-      const createdUserResponse = await axios.post('/users', newUserInfo)
+      const createdUserResponse = await axios.post(`${process.env.REACT_APP_USERS_API}/users`, newUserInfo)
       this.setState({currentUser: createdUserResponse.data, hasCurrentUser: true})
     }catch(error){
       console.log('Error creating new user')
@@ -36,7 +36,7 @@ class App extends Component {
 
   updateUser = async (userInfo) =>{
     try{
-      const updatedUserResponse = await axios.put(`/users/${userInfo.id}`,userInfo)
+      const updatedUserResponse = await axios.put(`${process.env.REACT_APP_USERS_API}/users/${userInfo.id}`,userInfo)
       console.log(updatedUserResponse)
       this.setState({currentUser: {...userInfo}})
     }catch(error){
@@ -47,7 +47,7 @@ class App extends Component {
 
   deleteUser = async (userId) => {
     try{
-      const deletedUserResponse = await axios.delete(`/users/${userId}`)
+      const deletedUserResponse = await axios.delete(`${process.env.REACT_APP_USERS_API}/users/${userId}`)
       console.log(deletedUserResponse)
       this.setState({currentUser:{}, hasCurrentUser:false})
     }catch(error){

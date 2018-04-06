@@ -9,10 +9,13 @@ class UsersPage extends Component{
     users: []
   }
 
+  domain = process.env.REACT_APP_SKITTLE_FLAVOR;
+
+
   async componentDidMount() {
     if(this.props.hasCurrentUser){
       try {
-        const response = await axios.get('/users')
+        const response = await axios.get(`${process.env.REACT_APP_USERS_API}/users`)
         this.setState({ users: response.data })
       } catch (error) {
         console.log('Error retrieving ideas!')
@@ -22,7 +25,7 @@ class UsersPage extends Component{
 
   deleteUser = async (userId, index) => {
     try {
-        await axios.delete(`/users/${userId}`)
+        await axios.delete(`${process.env.REACT_APP_USERS_API}/users/${userId}`)
 
         const updatedUserList = [...this.state.users]
         updatedUserList.splice(index, 1)
